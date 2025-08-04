@@ -1,8 +1,9 @@
-/// Author Bilin Huang, contact @b bilinhuang5@gmail.com (mailto:bilinhuang5@gmail.com) if you want
+/// Author Bilin Huang, contact @b bilinhuang5@gmail.com
+/// (mailto:bilinhuang5@gmail.com) if you want
 // Wrote on 2025/8/4
 // version 1.1
 // This file is a way to run your own tests, developed based on UNSW cse courses
-// This file does not contain any test file, 
+// This file does not contain any test file,
 // so it is not against the UNSW academic rules.
 
 // libraries
@@ -12,24 +13,28 @@
 #include <string.h>
 
 // usage: after compilcation, you have:
-///  @note all @param params can be used seperately or together, in any sequence.
-//         If there is any conflicts, like using multiple complie methods, the 
+///  @note all @param params can be used seperately or together, in any
+///  sequence.
+//         If there is any conflicts, like using multiple complie methods, the
 //         last one will be taken
 // example usage:
 ///  @c  ./selftest with no additional @param params
-///  @c  ./selftest @param dcc (you can define different names below), compile with dcc
-///  @c  ./selftest @param gcc (same as above) @param bonus, then compile with gcc 
+///  @c  ./selftest @param dcc (you can define different names below), compile
+///  with dcc
+///  @c  ./selftest @param gcc (same as above) @param bonus, then compile with
+///  gcc
 //                  and run one more test of a task, (if you have such path)
-///  @c  ./selftest @param remake @param bonus, then this program will run the 
+///  @c  ./selftest @param remake @param bonus, then this program will run the
 //                  given correct answer program to generate exp for each test
-//                  case, and then compare with you, including the one more task 
+//                  case, and then compare with you, including the one more task
 ///                 from the @param bonus
 
-/// Before compiling this program, you have to fill in the following @def definnitions
+/// Before compiling this program, you have to fill in the following @def
+/// definnitions
 
 // Part of complication, change to adapt to your own
 // Usage: to use dcc, type in terminal ./selftest dcc
-// Assume you've already have Makefile 
+// Assume you've already have Makefile
 #define default_compile_cmd "make"
 
 #define compile_mode_name_1 "dcc"
@@ -49,7 +54,8 @@
 
 // Part of basic info of tests
 #define NUM_TASKS 4
-/// you can add n parameter @param bonus for n more task than default (if you have).
+/// you can add n parameter @param bonus for n more task than default (if you
+/// have).
 
 // task path
 #define file_path "self/"
@@ -74,14 +80,9 @@ file_path
     |-task NUM_TASKS......(as mnuch as you want, but no more than INT_MAX)
 */
 
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 //   You are not supposed to change anything below, but feel free to do it    //
 ////////////////////////////////////////////////////////////////////////////////
-
 
 // Prototypes
 void print_green(char *str);
@@ -91,161 +92,151 @@ void print_double_line();
 void print_single_line();
 int compile(int compile_mode);
 
-
 int main(int argc, char *argv[]) {
-    int remake = 0;
-    int num_task = NUM_TASKS;
-    int fail_count = 0;
-    int pass_count = 0;
-	int remake_count = 0;
-    int compile_mode = 0;
-    print_double_line();
-    printf("** Compilation\n");
-    print_double_line();
-    for (int i = 1;i < argc;i++) {
-        if (strcmp(argv[i], "bonus") == 0) {
-            num_task++;
-        } else if (strcmp(argv[i], "remake") == 0) {
-            remake = 1;
-        } else if (strcmp(argv[i], compile_mode_name_1)) {
-            compile_mode = 1;
-        } else if (strcmp(argv[i], compile_mode_name_2)) {
-            compile_mode = 2;
-        } else if (strcmp(argv[i], compile_mode_name_3)) {
-            compile_mode = 3;
-        }
+  int remake = 0;
+  int num_task = NUM_TASKS;
+  int fail_count = 0;
+  int pass_count = 0;
+  int remake_count = 0;
+  int compile_mode = 0;
+  print_double_line();
+  printf("** Compilation\n");
+  print_double_line();
+  for (int i = 1; i < argc; i++) {
+    if (strcmp(argv[i], "bonus") == 0) {
+      num_task++;
+    } else if (strcmp(argv[i], "remake") == 0) {
+      remake = 1;
+    } else if (strcmp(argv[i], compile_mode_name_1)) {
+      compile_mode = 1;
+    } else if (strcmp(argv[i], compile_mode_name_2)) {
+      compile_mode = 2;
+    } else if (strcmp(argv[i], compile_mode_name_3)) {
+      compile_mode = 3;
     }
+  }
 
-    compile(compile_mode);
+  compile(compile_mode);
 
-    char filename[1024];
-    char targetfile[1024];
-    char expfile[1024];
-    char exce[50];
-    int result = 0;
-    for (int task = 1;task <= num_task;task++) {
-        int sub = 1;
-        print_double_line();
-        printf("** Tests for Task %d\n", task);
-        print_double_line();
-        FILE *f;
-        int next = 1;
-        while (next) {
-            sprintf(filename, "%stask%d/%d.in",file_path, task, sub);
-            sprintf(targetfile, "%stask%d/%d.out", file_path, task, sub);
-            sprintf(expfile, "%stask%d/%d.exp", file_path, task, sub);
-            //printf("filename:%s", filename);
-            printf("** Test %d (%s)\n", sub, filename);
-            print_single_line();
-            sprintf(exce, "%s %s > %s",run_cmd, filename, targetfile);
-            result = system(exce);
+  char filename[1024];
+  char targetfile[1024];
+  char expfile[1024];
+  char exce[50];
+  int result = 0;
+  for (int task = 1; task <= num_task; task++) {
+    int sub = 1;
+    print_double_line();
+    printf("** Tests for Task %d\n", task);
+    print_double_line();
+    FILE *f;
+    int next = 1;
+    while (next) {
+      sprintf(filename, "%stask%d/%d.in", file_path, task, sub);
+      sprintf(targetfile, "%stask%d/%d.out", file_path, task, sub);
+      sprintf(expfile, "%stask%d/%d.exp", file_path, task, sub);
+      // printf("filename:%s", filename);
+      printf("** Test %d (%s)\n", sub, filename);
+      print_single_line();
+      sprintf(exce, "%s %s > %s", run_cmd, filename, targetfile);
+      result = system(exce);
 
-            if (remake) {
-                
-                system(exce);
-                sprintf(exce, "%s \"%s\" > \"%s\"",run_ans, filename, expfile);
-                result = system(exce);
-                printf("** remaking - ");
-                if (result == 0) {
-                    print_green("success");
-					remake_count++;
-				} else {
-					print_red("failed");
-				}
-                printf("%c", 10);
-            }
-            sprintf(exce, "diff %s %s",targetfile, expfile);
-            result = system(exce);
-            // Check the return value
-            printf("** Your output was ");
-            if (result == 0) {
-                printf("correct");
-                print_green(" - passed");
-                printf("%c", 10);
-                pass_count++;
-            } else {
-                printf("incorrect");
-                print_red(" - failed");
-                printf("%c", 10);
-                fail_count++;
-            }
-            print_single_line();
-            sub++;
+      if (remake) {
 
-            sprintf(filename, "%stask%d/%d.in",file_path, task, sub);
-            f = fopen(filename, "r");
-            next = (f != NULL);
-            if (f != NULL) {
-                fclose(f);
-            }
+        system(exce);
+        sprintf(exce, "%s \"%s\" > \"%s\"", run_ans, filename, expfile);
+        result = system(exce);
+        printf("** remaking - ");
+        if (result == 0) {
+          print_green("success");
+          remake_count++;
+        } else {
+          print_red("failed");
         }
+        printf("%c", 10);
+      }
+      sprintf(exce, "diff %s %s", targetfile, expfile);
+      result = system(exce);
+      // Check the return value
+      printf("** Your output was ");
+      if (result == 0) {
+        printf("correct");
+        print_green(" - passed");
+        printf("%c", 10);
+        pass_count++;
+      } else {
+        printf("incorrect");
+        print_red(" - failed");
+        printf("%c", 10);
+        fail_count++;
+      }
+      print_single_line();
+      sub++;
+
+      sprintf(filename, "%stask%d/%d.in", file_path, task, sub);
+      f = fopen(filename, "r");
+      next = (f != NULL);
+      if (f != NULL) {
+        fclose(f);
+      }
     }
-    char text[130];
+  }
+  char text[130];
 
+  sprintf(text, "%d tests passed", pass_count);
+  print_green(text);
+  printf(", ");
+  sprintf(text, "%d tests failed", fail_count);
+  print_red(text);
+  printf(".\n");
 
-    sprintf(text, "%d tests passed", pass_count);
+  if (remake) {
+    printf("");
+    sprintf(text, "%d remake succeeded", remake_count);
     print_green(text);
-    printf(", ");
-    sprintf(text, "%d tests failed", fail_count);
-    print_red(text);
-    printf(".\n");
-
-	if (remake) {
-		printf("");
-		sprintf(text, "%d remake succeeded", remake_count);
-		print_green(text);
-		printf(".%c", 10);
-        if (remake_count < pass_count + fail_count) {
-            print_red("Be careful! Some remake failed!!!");
-            printf(".%c", 10);
-        }
-	}
+    printf(".%c", 10);
+    if (remake_count < pass_count + fail_count) {
+      print_red("Be careful! Some remake failed!!!");
+      printf(".%c", 10);
+    }
+  }
 }
-
 
 int compile(int compile_mode) {
 
-    int result;
-    if (compile_mode == 0) {
-        // default using make
-        result = system(default_compile_cmd);
-    } else if (compile_mode == 1) {
-        // mode 1, using dcc
-        result = system(compile_cmd_1);
-    } else if (compile_mode == 2) {
-        // mode 1, using gcc
-        result = system(compile_cmd_2);
-    } else if (compile_mode == 3) {
-        result = system(compile_cmd_3);
-    }
-    if (result != 0) {
-        print_red("complication failed!");
-        printf("%c",10);
-        exit(EXIT_FAILURE);
-    }
-    return result;
-
+  int result;
+  if (compile_mode == 0) {
+    // default using make
+    result = system(default_compile_cmd);
+  } else if (compile_mode == 1) {
+    // mode 1, using dcc
+    result = system(compile_cmd_1);
+  } else if (compile_mode == 2) {
+    // mode 1, using gcc
+    result = system(compile_cmd_2);
+  } else if (compile_mode == 3) {
+    result = system(compile_cmd_3);
+  }
+  if (result != 0) {
+    print_red("complication failed!");
+    printf("%c", 10);
+    exit(EXIT_FAILURE);
+  }
+  return result;
 }
-
-
 
 void print_green(char *str) {
-    printf("\033[0m\033[40;32m%s\033[0m",str);
-    printf("");
+  printf("\033[0m\033[40;32m%s\033[0m", str);
+  printf("");
 }
 void print_yellow(char *str) {
-    printf("\033[0m\033[40;33;1m%s\033[0m",str);
-    printf("");
+  printf("\033[0m\033[40;33;1m%s\033[0m", str);
+  printf("");
 }
 void print_red(char *str) {
-    printf("\033[0m\033[40;31m%s\033[0m",str);
-    printf("");
+  printf("\033[0m\033[40;31m%s\033[0m", str);
+  printf("");
 }
 
-void print_double_line() {
-    printf("================================\n");
-}
+void print_double_line() { printf("================================\n"); }
 
-void print_single_line() {
-    printf("--------------------------------\n");
-}
+void print_single_line() { printf("--------------------------------\n"); }
