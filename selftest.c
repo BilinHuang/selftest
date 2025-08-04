@@ -1,7 +1,7 @@
 /// Author Bilin Huang, contact @b bilinhuang5@gmail.com
 /// (mailto:bilinhuang5@gmail.com) if you want
 // Wrote on 2025/8/4
-// version 1.1
+// version 1.2
 // This file is a way to run your own tests, developed based on UNSW cse courses
 // This file does not contain any test file,
 // so it is not against the UNSW academic rules.
