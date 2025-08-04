@@ -1,10 +1,42 @@
 /// Author Bilin Huang, contact @b bilinhuang5@gmail.com
 /// (mailto:bilinhuang5@gmail.com) if you want
 // Wrote on 2025/8/4
-// version 1.1
+// last edited on 2025/8/4/19:31 (UTC+10)
+// version 1.2
 // This file is a way to run your own tests, developed based on UNSW cse courses
 // This file does not contain any test file,
 // so it is not against the UNSW academic rules.
+
+
+// currently this selftest can only test programs being called as:
+//       path_of_your_program/your_program in_file_path/in_file_name.type
+//and in most cases, it should be: ./your_program in_file_path/in_file_name.type
+
+// Take COMP2521 25T2 Assignment2 as an example:
+// we have the file structure (and dir name) as default setting:
+/*
+assignment2
+|-testPoodle.c
+|-selftest.c
+|-ansPoodle (a link to sample solution, for 2521 25t2 ass2, run "/web/cs2521/25T2/ass/ass2/references/testPoodle")
+|-self (directory for self test cases)
+|  | -task1
+|  |  | - 1.in
+|  |  | - 1.exp
+|  |  | - 2.in
+|  |  | - ...
+|  | 
+|  | -task2
+|  | -task3
+|  | -task4
+|  | -task5
+
+
+With the upper struct we compile selftest.c with gcc selftest.c -o selftest.
+Then run "./selftest remake" to build all exp
+
+*/
+
 
 // libraries
 #include <assert.h>
