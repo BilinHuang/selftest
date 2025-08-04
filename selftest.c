@@ -1,5 +1,6 @@
 /// Author Bilin Huang, contact @b bilinhuang5@gmail.com (mailto:bilinhuang5@gmail.com) if you want
 // Wrote on 2025/8/4
+// version 1.1
 // This file is a way to run your own tests, developed based on UNSW cse courses
 // This file does not contain any test file, 
 // so it won't against the UNSW academic rules.
@@ -28,6 +29,7 @@
 
 // Part of complication, change to adapt to your own
 // Usage: to use dcc, type in terminal ./selftest dcc
+// Assume you've already have Makefile 
 #define default_compile_cmd "make"
 
 #define compile_mode_name_1 "dcc"
