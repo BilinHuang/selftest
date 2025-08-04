@@ -3,7 +3,7 @@
 // version 1.1
 // This file is a way to run your own tests, developed based on UNSW cse courses
 // This file does not contain any test file, 
-// so it won't against the UNSW academic rules.
+// so it is not against the UNSW academic rules.
 
 // libraries
 #include <assert.h>
