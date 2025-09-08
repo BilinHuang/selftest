@@ -5,6 +5,7 @@
 // This file does not contain any test file, 
 // so it won't against the UNSW academic rules.
 
+
 // currently this selftest can only test programs being called as:
 //       path_of_your_program/your_program in_file_path/in_file_name.type
 //and in most cases, it should be: ./your_program in_file_path/in_file_name.type
